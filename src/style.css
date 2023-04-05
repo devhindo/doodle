@@ -9,9 +9,8 @@ h1 {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     height: 300px;
     width:  300px;
     background-color: rgb(25, 0, 49);
@@ -28,8 +27,6 @@ h1 {
 
 #color-selector {
     border: none;
-
-
 }
 
 .color-box {
