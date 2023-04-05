@@ -1,0 +1,32 @@
+{
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "path": [
+                "C:\\Program Files\\Git\\bin\\bash.exe",
+                "C:\\Program Files (x86)\\Git\\bin\\bash.exe"
+            ],
+            "args": [],
+            "icon": "terminal-bash"
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "files.associations": {
+        "ostream": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "iostream": "cpp"
+    },
+    "code-runner.terminalRoot":"/",
+}
