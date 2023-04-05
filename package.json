@@ -1,0 +1,22 @@
+{
+  "name": "doodle",
+  "version": "1.0.0",
+  "description": "paint tool for webpages",
+  "main": "script.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devhindo/doodle.git"
+  },
+  "author": "devhindo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devhindo/doodle/issues"
+  },
+  "homepage": "https://github.com/devhindo/doodle#readme",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
