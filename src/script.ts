@@ -29,5 +29,3 @@ document.addEventListener('mousemove', (event) => {
 document.addEventListener('mouseup', () => {
     isDrawing = false;
   });
-
-export {};
