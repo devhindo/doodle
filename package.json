@@ -2,7 +2,7 @@
   "name": "doodle",
   "version": "1.0.0",
   "description": "paint tool for webpages",
-  "main": "script.ts",
+  "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
