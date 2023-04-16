@@ -12,8 +12,5 @@
         "48": "assets/icon.png",
         "128": "assets/icon.png"
     },
-    "background": {
-        "service_worker": "src/background.js"
-    },
     "options_page": "src/options.html"
 }

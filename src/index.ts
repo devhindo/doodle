@@ -1,5 +1,5 @@
-import * as chrome from 'chrome';
-chrome.tabs.e
+/// <reference types="chrome" />
+
 var canvas = document.createElement('canvas');
 canvas.style.position = 'fixed';
 canvas.style.top = '0';
@@ -15,17 +15,18 @@ var isDrawing = false;
 var lastX = 0;
 var lastY = 0;
 
-canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', stopDrawing);
 
-function startDrawing(e) {
+canvas.addEventListener('mousedown', startDrawing);
+function startDrawing(e: MouseEvent) {
     isDrawing = true;
     lastX = e.clientX;
     lastY = e.clientY;
 }
 
-function draw(e) {
+function draw(e: MouseEvent) {
+    if(!ctx) return;
     if (!isDrawing) return;
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
@@ -46,6 +47,7 @@ canvas.addEventListener('mousedown', function (event) {
 });
 
 canvas.addEventListener('mousemove', function (event) {
+    if(!ctx) return;
     if (isDrawing) {
         ctx.beginPath();
         ctx.moveTo(lastX, lastY);

@@ -1,30 +1,12 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "outDir": "../js",
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "noImplicitThis": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "allowSyntheticDefaultImports": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "lib": [
-        "es2015",
-        "dom"
-        ]
+        "module": "NodeNext",
+        "moduleResolution": "nodeNext",
+        "target": "ES2020",
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "sourceMap": false,
+        "outDir": "dist",
     },
-    "include": [
-        "src/*.ts"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
-
+    "include": ["src/**/*", "dist/index.js"],
 }
