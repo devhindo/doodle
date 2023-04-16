@@ -1,6 +1,5 @@
 /// <reference types="chrome" />
-
-var canvas = document.createElement('canvas');
+/*var canvas = document.createElement('canvas');
 canvas.style.position = 'fixed';
 canvas.style.top = '0';
 canvas.style.left = '0';
@@ -8,20 +7,19 @@ canvas.style.zIndex = '9999';
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 document.body.appendChild(canvas);
-
 var ctx = canvas.getContext('2d');
+*/
 
 const colorSelector = document.getElementById('color-selector') as HTMLInputElement;
 var color = colorSelector.value;
 
-function updateColor() {
-    
-}
-
-colorSelector.addEventListener("input",updateColor,false);
-
-
-
+colorSelector.addEventListener('input', (event: Event) => {
+    const selectedColor = (event.target as HTMLInputElement).value;
+    console.log(`Selected color is ${selectedColor}`);
+    color = selectedColor;
+    // Do something with the selected color
+  });
+/*
 var isDrawing = false;
 var lastX = 0;
 var lastY = 0;
@@ -72,6 +70,7 @@ canvas.addEventListener('mousemove', function (event) {
 canvas.addEventListener('mouseup', function (event) {
     isDrawing = false;
 });
+/*
 /*
 chrome.tabs.executeScript({
     code: `
