@@ -5,11 +5,15 @@
     "action": {
         "default_popup": "src/index.html"
     },
-    "description": "doodle",
+    "description": "draw over webpages in a smooth way",
     "icons": {
         "16": "assets/icon.png",
         "32": "assets/icon.png",
         "48": "assets/icon.png",
         "128": "assets/icon.png"
-    }
+    },
+    "background": {
+        "service_worker": "src/background.js"
+    },
+    "options_page": "src/options.html"
 }

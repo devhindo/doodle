@@ -1,31 +1,61 @@
-const colorSelector = document.getElementById('color-selector') as HTMLInputElement;
-
-colorSelector.addEventListener('input', () => {
-    const selectedColor = colorSelector.value;
-});
-
-const canvas = document.createElement('canvas');
+import * as chrome from 'chrome';
+chrome.tabs.e
+var canvas = document.createElement('canvas');
+canvas.style.position = 'fixed';
+canvas.style.top = '0';
+canvas.style.left = '0';
+canvas.style.zIndex = '9999';
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 document.body.appendChild(canvas);
 
-const context = canvas.getContext('2d');
-if(context) context.lineWidth = 5;
+var ctx = canvas.getContext('2d');
 
-let isDrawing = false;
-let lastX = 0;
-let lastY = 0;
+var isDrawing = false;
+var lastX = 0;
+var lastY = 0;
 
-document.addEventListener('mousemove', (event) => {
-    if(isDrawing && context) {
-        context.strokeStyle = (document.getElementById('color-selector') as HTMLInputElement).value;
-        context.beginPath();
-        context.moveTo(lastX, lastY);
-        context.lineTo(event.clientX, event.clientY);
-        context.stroke();
-        lastX = event.clientX;
-        lastY = event.clientY;
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', stopDrawing);
+
+function startDrawing(e) {
+    isDrawing = true;
+    lastX = e.clientX;
+    lastY = e.clientY;
+}
+
+function draw(e) {
+    if (!isDrawing) return;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+    lastX = e.clientX;
+    lastY = e.clientY;
+}
+
+function stopDrawing() {
+    isDrawing = false;
+}
+
+canvas.addEventListener('mousedown', function (event) {
+    isDrawing = true;
+    lastX = event.offsetX;
+    lastY = event.offsetY;
+});
+
+canvas.addEventListener('mousemove', function (event) {
+    if (isDrawing) {
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(event.offsetX, event.offsetY);
+        ctx.stroke();
+        lastX = event.offsetX;
+        lastY = event.offsetY;
     }
 });
 
-document.addEventListener('mouseup', () => {
+canvas.addEventListener('mouseup', function (event) {
     isDrawing = false;
-  });
+});
