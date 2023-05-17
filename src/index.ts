@@ -17,8 +17,12 @@ colorSelector.addEventListener('input', (event: Event) => {
     const selectedColor = (event.target as HTMLInputElement).value;
     console.log(`Selected color is ${selectedColor}`);
     color = selectedColor;
-    // Do something with the selected color
-  });
+});
+
+chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
+    console.log(tabs[0].url);
+    console.log("hindooooooooooooooooooooooo");
+});
 /*
 var isDrawing = false;
 var lastX = 0;
