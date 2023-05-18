@@ -32,7 +32,7 @@ function initCanvas() {
     canvas.id = "canvas";
     document.body.appendChild(canvas);
     // make canvas on entire window
-    canvas.style.position = 'fixed';
+    canvas.style.position = 'absolute';
     canvas.style.top = '0';
     canvas.style.left = '0';
     //canvas.style.zIndex = '999999';
@@ -40,18 +40,16 @@ function initCanvas() {
     canvas.height = window.innerHeight;
     canvas.style.border = '5px solid green';
     context = canvas.getContext('2d');
-    context!.strokeStyle = 'red'; // TODO: get color from `index.ts`
+    context!.strokeStyle = getColor(); // TODO: get color from `index.ts`
     context!.lineWidth = 5;
     context!.lineCap = 'round';
-    context?.fillRect(50,50,200,200);
-
-    
-    
 }
 
+
+
 function resizeCanvas() {
-    canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 }
 window.addEventListener('resize', resizeCanvas);
 
@@ -62,13 +60,14 @@ var isMouseDown = false;
 var isDrawing = false;
 
 
-function getColor() {
-    var color;
-    chrome.storage.sync.get(['color'], function(result) {
-        console.log('Value currently is ' + result.color);
-        color = result.color;
-    });
-    return color;
+function getColor() : string | CanvasGradient | CanvasPattern{
+    var color: string | CanvasGradient | CanvasPattern;
+    // chrome.storage.sync.get(['color'], function(result) {
+    //     console.log('Value currently is ' + result.color);
+    //     color = result.color;
+    //     return color;
+    // });
+    return 'blue';
 }
 
 
