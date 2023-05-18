@@ -1,4 +1,9 @@
 const colorSelector = document.getElementById('color-selector') as HTMLInputElement;
+
+chrome.storage.sync.get(['color'], function(result) {
+    colorSelector.value = result.color;
+});
+
 var color = colorSelector.value;
 
 const clickme = document.getElementById('console') as HTMLInputElement;
