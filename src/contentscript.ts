@@ -1,7 +1,11 @@
 console.log("content script loaded");
 var isCanvasActive = false;
 
-var color = 'black';
+var color: string;
+
+chrome.storage.sync.get(['color'], function(result) {
+    color = result.color;
+});
 
 document.addEventListener("keydown", (event: KeyboardEvent) => {
     if (!isCanvasActive && event.ctrlKey && event.key === "[") {
