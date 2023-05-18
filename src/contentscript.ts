@@ -1,6 +1,8 @@
 console.log("content script loaded");
 var isCanvasActive = false;
 
+var color = 'black';
+
 document.addEventListener("keydown", (event: KeyboardEvent) => {
     if (!isCanvasActive && event.ctrlKey && event.key === "[") {
         document.body.style.border = "5px solid red";
@@ -39,7 +41,7 @@ function initCanvas() {
     canvas.height = window.innerHeight;
     canvas.style.border = '5px solid green';
     context = canvas.getContext('2d');
-    context!.strokeStyle = getColor(); // TODO: get color from `index.ts`
+    context!.strokeStyle = color; // TODO: get color from `index.ts`
     context!.lineWidth = 5;
     context!.lineCap = 'round';
 }
@@ -59,20 +61,23 @@ var isMouseDown = false;
 var isDrawing = false;
 
 
-function getColor(): string | CanvasGradient | CanvasPattern {
-    var color: string | CanvasGradient | CanvasPattern;
-
-    chrome.storage.sync.get(['color'], function(result) {
+function getColor() {
+    chrome.storage.sync.get(['color'], function (result) {
         console.log('Value currently is (get)' + result.color);
         color = result.color;
         console.log('before returning selected color');
-        return result.color;
-        return color;
     });
-    console.log('returning blue as fetching the color failed');
-    return 'yellow';
 }
 
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
+        console.log(
+            `Storage key "${key}" in namespace "${namespace}" changed.`,
+            `Old value was "${oldValue}", new value is "${newValue}".`
+        );
+        color = newValue;
+    };
+});
 
 
 function startDrawing(e: MouseEvent) {
@@ -92,9 +97,9 @@ function stopDrawing() {
 function draw(e: MouseEvent) {
     if (!isCanvasActive || !isDrawing) return;
     console.log('current color is ' + context!.strokeStyle);
-    console.log('current color is (getcolor) ' + getColor());
 
     context?.lineTo(e.clientX, e.clientY);
+    context!.strokeStyle = color;
     context?.stroke();
     context?.beginPath();
     context?.moveTo(e.clientX, e.clientY);

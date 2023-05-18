@@ -1,6 +1,14 @@
 const colorSelector = document.getElementById('color-selector') as HTMLInputElement;
 var color = colorSelector.value;
 
+const clickme = document.getElementById('console') as HTMLInputElement;
+
+clickme.addEventListener('click', (event: Event) => {
+    chrome.storage.sync.get(['color'], function(result) {
+        console.log('Value currently is (get)' + result.color);
+    });
+});
+
 
 colorSelector.addEventListener('input', (event: Event) => {
     const selectedColor = (event.target as HTMLInputElement).value;
