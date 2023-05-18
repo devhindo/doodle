@@ -31,7 +31,18 @@ function initCanvas() {
     canvas = document.createElement('canvas');
     canvas.id = "canvas";
     document.body.appendChild(canvas);
+    // make canvas on entire window
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    //canvas.style.zIndex = '999999';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.border = '5px solid green';
     context = canvas.getContext('2d');
+    context!.strokeStyle = 'red'; // TODO: get color from `index.ts`
+    context!.lineWidth = 5;
+    context!.lineCap = 'round';
     context?.fillRect(50,50,200,200);
 
     
@@ -42,39 +53,54 @@ function resizeCanvas() {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 }
-
 window.addEventListener('resize', resizeCanvas);
 
 
-
-function logMouseCoordinates(e: MouseEvent) {
-    //console.log(`Mouse coordinates: ${e.clientX}, ${e.clientY}`);
-    triggerMouseHold(e);
-}
 
 
 var isMouseDown = false;
 var isDrawing = false;
 
-function handleMouseDown(e: MouseEvent) {
-    console.log("Mouse down");
-    isMouseDown = true;
+
+function getColor() {
+    var color;
+    chrome.storage.sync.get(['color'], function(result) {
+        console.log('Value currently is ' + result.color);
+        color = result.color;
+    });
+    return color;
+}
+
+
+
+function startDrawing(e: MouseEvent) {
+    if(!isCanvasActive) return;
     isDrawing = true;
+    draw(e);
+    console.log("start drawing");
 }
 
-function handleMouseUp(e: MouseEvent) {
-    console.log("Mouse up");
-    isMouseDown = false;
+function stopDrawing() {
+    if(!isCanvasActive) return;
+    isDrawing = false;
+    context?.beginPath();
+    console.log("stop drawing");
 }
 
-function triggerMouseHold(e: MouseEvent) {
-    if (isMouseDown) {
-        console.log("Mouse hold");
-    }
+function draw(e: MouseEvent) {
+    if (!isCanvasActive || !isDrawing) return;
+    console.log("draw");
+
+    context?.lineTo(e.clientX, e.clientY);
+    context?.stroke();
+    context?.beginPath();
+    context?.moveTo(e.clientX, e.clientY);
+
 }
 
-document.addEventListener('mouseup', handleMouseUp);
 
-document.addEventListener('mousedown', handleMouseDown);
+document.addEventListener('mouseup', stopDrawing);
 
-document.addEventListener('mousemove', logMouseCoordinates);
+document.addEventListener('mousedown', startDrawing);
+
+document.addEventListener('mousemove', draw);

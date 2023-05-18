@@ -10,3 +10,7 @@ colorSelector.addEventListener('input', (event: Event) => {
 chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
     console.log(tabs[0].url);
 });
+
+chrome.storage.sync.set({'color': color}, function() {
+    console.log('The color is set.');
+});
