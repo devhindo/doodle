@@ -4,3 +4,4 @@
 - get the color `from index.ts`
 - get the size from the chrome panel
 - make values set by user permenant.
+- learn about 'background.js' file
