@@ -7,6 +7,12 @@ chrome.storage.sync.get(['color'], function(result) {
     color = result.color;
 });
 
+var size: number;
+
+chrome.storage.sync.get(['size'], function(result) {
+    size = result.size;
+});
+
 document.addEventListener("keydown", (event: KeyboardEvent) => {
     if (!isCanvasActive && event.ctrlKey && event.key === "[") {
         document.body.style.border = "5px solid red";
@@ -46,7 +52,7 @@ function initCanvas() {
     canvas.style.border = '5px solid green';
     context = canvas.getContext('2d');
     context!.strokeStyle = color; // TODO: get color from `index.ts`
-    context!.lineWidth = 5;
+    context!.lineWidth = size;
     context!.lineCap = 'round';
 }
 
@@ -75,11 +81,19 @@ function getColor() {
 
 chrome.storage.onChanged.addListener((changes, namespace) => {
     for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
+        if(key === 'color') {
+            console.log('color changed');
+            color = newValue;
+        }
+        if(key === 'size') {
+            console.log('size changed');
+            size = newValue;
+            console.log('size is (change listner)' + size); 
+        }
         console.log(
             `Storage key "${key}" in namespace "${namespace}" changed.`,
             `Old value was "${oldValue}", new value is "${newValue}".`
         );
-        color = newValue;
     };
 });
 
@@ -101,9 +115,11 @@ function stopDrawing() {
 function draw(e: MouseEvent) {
     if (!isCanvasActive || !isDrawing) return;
     console.log('current color is ' + context!.strokeStyle);
+    console.log('current size is ' + context!.lineWidth);
 
     context?.lineTo(e.clientX, e.clientY);
     context!.strokeStyle = color;
+    context!.lineWidth = size;
     context?.stroke();
     context?.beginPath();
     context?.moveTo(e.clientX, e.clientY);

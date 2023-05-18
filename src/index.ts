@@ -19,18 +19,6 @@ colorSelector.addEventListener('input', (event: Event) => {
     const selectedColor = (event.target as HTMLInputElement).value;
     console.log(`Selected color is ${selectedColor}`);
     color = selectedColor;
-    
-    /*chrome.storage.local.set({'color': color}).then(() => {
-        console.log('The color is set to ' + color);
-    });
-    chrome.storage.local.get(['color']).then((result) => {
-        console.log("Value currently is (get - index.ts) " + result.key);
-    });
-    chrome.storage.sync.get(null, function(items) {
-        var allKeys = Object.keys(items);
-        console.log(allKeys);
-    });
-    */
 
     chrome.storage.sync.set({'color': color}, function() {
         console.log('The color is set to ' + color);
@@ -39,10 +27,14 @@ colorSelector.addEventListener('input', (event: Event) => {
 
 });
 
-// chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
-//     console.log(tabs[0].url);
-// });
+const slider = document.getElementById('size') as HTMLInputElement;
 
-// chrome.storage.sync.set({'color': color}, function() {
-//     console.log('The color is set.');
-// });
+chrome.storage.sync.get(['size'], function(result) {
+    slider.value = result.size;
+});
+
+slider.addEventListener('input', (event: Event) => {
+    chrome.storage.sync.set({'size': slider.value}, function() {
+        console.log('The size is set to (index.ts)' + slider.value);
+    });
+});
