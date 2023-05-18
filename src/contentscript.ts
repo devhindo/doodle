@@ -21,7 +21,7 @@ document.addEventListener("keydown", (event: KeyboardEvent) => {
 });
 
 document.addEventListener("keydown", (event: KeyboardEvent) => {
-    if (isCanvasActive && event.ctrlKey && event.key === "]") {
+    if (isCanvasActive && ((event.ctrlKey && event.key === "]") || event.key == "Escape")) {
         document.body.style.border = "none";
         isCanvasActive = false;
         terminateCanvas();
@@ -43,10 +43,10 @@ function initCanvas() {
     canvas.id = "canvas";
     document.body.appendChild(canvas);
     // make canvas on entire window
-    canvas.style.position = 'absolute';
+    canvas.style.position = 'fixed';
     canvas.style.top = '0';
     canvas.style.left = '0';
-    //canvas.style.zIndex = '999999';
+    canvas.style.zIndex = '999999';
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     canvas.style.border = '5px solid green';
