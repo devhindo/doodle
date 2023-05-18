@@ -1,5 +1,4 @@
 console.log("content script loaded");
-
 var isCanvasActive = false;
 
 document.addEventListener("keydown", (event: KeyboardEvent) => {
@@ -60,27 +59,31 @@ var isMouseDown = false;
 var isDrawing = false;
 
 
-function getColor() : string | CanvasGradient | CanvasPattern{
+function getColor(): string | CanvasGradient | CanvasPattern {
     var color: string | CanvasGradient | CanvasPattern;
-    // chrome.storage.sync.get(['color'], function(result) {
-    //     console.log('Value currently is ' + result.color);
-    //     color = result.color;
-    //     return color;
-    // });
-    return 'blue';
+
+    chrome.storage.sync.get(['color'], function(result) {
+        console.log('Value currently is (get)' + result.color);
+        color = result.color;
+        console.log('before returning selected color');
+        return result.color;
+        return color;
+    });
+    console.log('returning blue as fetching the color failed');
+    return 'yellow';
 }
 
 
 
 function startDrawing(e: MouseEvent) {
-    if(!isCanvasActive) return;
+    if (!isCanvasActive) return;
     isDrawing = true;
     draw(e);
     console.log("start drawing");
 }
 
 function stopDrawing() {
-    if(!isCanvasActive) return;
+    if (!isCanvasActive) return;
     isDrawing = false;
     context?.beginPath();
     console.log("stop drawing");
@@ -88,7 +91,8 @@ function stopDrawing() {
 
 function draw(e: MouseEvent) {
     if (!isCanvasActive || !isDrawing) return;
-    console.log("draw");
+    console.log('current color is ' + context!.strokeStyle);
+    console.log('current color is (getcolor) ' + getColor());
 
     context?.lineTo(e.clientX, e.clientY);
     context?.stroke();
@@ -103,3 +107,4 @@ document.addEventListener('mouseup', stopDrawing);
 document.addEventListener('mousedown', startDrawing);
 
 document.addEventListener('mousemove', draw);
+
