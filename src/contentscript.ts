@@ -15,7 +15,7 @@ chrome.storage.sync.get(['size'], function(result) {
 
 document.addEventListener("keydown", (event: KeyboardEvent) => {
     if (!isCanvasActive && event.ctrlKey && event.key === "[") {
-        document.body.style.border = "5px solid red";
+        //document.body.style.border = "5px solid red";
         initCanvas();
     }
 });
@@ -49,7 +49,7 @@ function initCanvas() {
     canvas.style.zIndex = '999999';
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    canvas.style.border = '5px solid green';
+    //canvas.style.border = '5px solid green';
     context = canvas.getContext('2d');
     context!.strokeStyle = color; // TODO: get color from `index.ts`
     context!.lineWidth = size;
