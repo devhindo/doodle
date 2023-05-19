@@ -41,7 +41,7 @@ function initCanvas() {
     isCanvasActive = true;
     console.log("init canvas with ctrl + [");
     canvas = document.createElement('canvas');
-    canvas.id = "canvas";
+    canvas.id = 'canvas';
     document.body.appendChild(canvas);
     // make canvas on entire window
     canvas.style.position = 'fixed';
