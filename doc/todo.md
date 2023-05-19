@@ -10,3 +10,4 @@
 - when resizing the page the canvas should resize too or at least stay the same.
 - when scrolling down the page the canvas should stay in the same
 place it was drawn on.
+- activate the extension when clicking the extension icon.
