@@ -11,3 +11,7 @@
 - when scrolling down the page the canvas should stay in the same
 place it was drawn on.
 - activate the extension when clicking the extension icon.
+
+## to be done
+
+- add badges to the readme file from [here](https://badgen.net/).
