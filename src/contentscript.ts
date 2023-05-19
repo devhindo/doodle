@@ -9,6 +9,7 @@ chrome.storage.sync.get(['color'], function(result) {
 
 var size: number;
 
+
 chrome.storage.sync.get(['size'], function(result) {
     size = result.size;
 });
