@@ -42,3 +42,8 @@ h1 {
     align-items: center;
     gap: 1rem;
 }
+
+.footer {
+    font-size: 0.7rem;
+    text-align: center;
+}
