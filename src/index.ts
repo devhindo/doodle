@@ -1,19 +1,24 @@
+
+// fetching colorSelector values
+
 const colorSelector = document.getElementById('color-selector') as HTMLInputElement;
 
 chrome.storage.sync.get(['color'], function(result) {
     colorSelector.value = result.color;
 });
 
-var color = colorSelector.value;
+// fetching size value
 
-const clickme = document.getElementById('console') as HTMLInputElement;
+const slider = document.getElementById('size') as HTMLInputElement;
 
-clickme.addEventListener('click', (event: Event) => {
-    chrome.storage.sync.get(['color'], function(result) {
-        console.log('Value currently is (get)' + result.color);
-    });
+chrome.storage.sync.get(['size'], function(result) {
+    slider.value = result.size;
 });
 
+
+// handling changes in color and size value
+
+var color = colorSelector.value;
 
 colorSelector.addEventListener('input', (event: Event) => {
     const selectedColor = (event.target as HTMLInputElement).value;
@@ -27,11 +32,7 @@ colorSelector.addEventListener('input', (event: Event) => {
 
 });
 
-const slider = document.getElementById('size') as HTMLInputElement;
 
-chrome.storage.sync.get(['size'], function(result) {
-    slider.value = result.size;
-});
 
 slider.addEventListener('input', (event: Event) => {
     var silderValue: number = +slider.value;

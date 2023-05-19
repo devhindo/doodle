@@ -47,10 +47,10 @@ function initCanvas() {
     canvas.style.top = '0';
     canvas.style.left = '0';
     canvas.style.zIndex = '999999';
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    resizeCanvas();
     //canvas.style.border = '5px solid green';
-    context = canvas.getContext('2d');
+    context = canvas.getContext('2d', {willReadFrequently: true});
+    
     context!.strokeStyle = color;
     context!.lineWidth = size;
     context!.lineCap = 'round';
@@ -58,9 +58,13 @@ function initCanvas() {
 
 
 
+
 function resizeCanvas() {
+    var canvasContent = context?.getImageData(0,0,canvas.width,canvas.height);
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    context?.putImageData(canvasContent!,0,0);
+    console.log("resize canvas");
 }
 window.addEventListener('resize', resizeCanvas);
 

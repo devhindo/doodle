@@ -1,5 +1,5 @@
-console.log("background.ts");
-
-chrome.storage.sync.get(['color'], function(result) {
-    console.log('Value currently is (get)' + result.color);
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.storage.sync.set({'color': '#0000ff', 'size': '15'}, function() {
+        console.log('The color is set to ' + 'blue');
+    });
 });
