@@ -7,3 +7,6 @@
 - learn about 'background.js' file
 - [public to webstore](https://developer.chrome.com/docs/webstore/publish/)
 - [full tutorial](https://www.youtube.com/watch?v=0n809nd4Zu4)
+- when resizing the page the canvas should resize too or at least stay the same.
+- when scrolling down the page the canvas should stay in the same
+place it was drawn on.
