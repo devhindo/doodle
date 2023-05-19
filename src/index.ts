@@ -22,12 +22,9 @@ var color = colorSelector.value;
 
 colorSelector.addEventListener('change', (event: Event) => {
     const selectedColor = (event.target as HTMLInputElement).value;
-    console.log(`Selected color is ${selectedColor}`);
     color = selectedColor;
 
-    chrome.storage.sync.set({'color': color}, function() {
-        console.log('The color is set to ' + color);
-    });
+    chrome.storage.sync.set({'color': color});
 
 
 });
@@ -38,7 +35,5 @@ slider.addEventListener('change', (event: Event) => {
     var silderValue: number = +slider.value;
     silderValue = Math.round(silderValue/2);
     var val = silderValue.toString();
-    chrome.storage.sync.set({'size': val}, function() {
-        console.log('The size is set to (index.ts)' + val);
-    });
+    chrome.storage.sync.set({'size': val});
 });
