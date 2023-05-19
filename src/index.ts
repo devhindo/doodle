@@ -34,7 +34,10 @@ chrome.storage.sync.get(['size'], function(result) {
 });
 
 slider.addEventListener('input', (event: Event) => {
-    chrome.storage.sync.set({'size': slider.value}, function() {
-        console.log('The size is set to (index.ts)' + slider.value);
+    var silderValue: number = +slider.value;
+    silderValue = Math.round(silderValue/2);
+    var val = silderValue.toString();
+    chrome.storage.sync.set({'size': val}, function() {
+        console.log('The size is set to (index.ts)' + val);
     });
 });

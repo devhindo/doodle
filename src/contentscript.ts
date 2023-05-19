@@ -51,7 +51,7 @@ function initCanvas() {
     canvas.height = window.innerHeight;
     //canvas.style.border = '5px solid green';
     context = canvas.getContext('2d');
-    context!.strokeStyle = color; // TODO: get color from `index.ts`
+    context!.strokeStyle = color;
     context!.lineWidth = size;
     context!.lineCap = 'round';
 }

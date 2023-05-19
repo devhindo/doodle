@@ -7,4 +7,3 @@
 - learn about 'background.js' file
 - [public to webstore](https://developer.chrome.com/docs/webstore/publish/)
 - [full tutorial](https://www.youtube.com/watch?v=0n809nd4Zu4)
-
