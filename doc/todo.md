@@ -20,3 +20,4 @@ place it was drawn on.
 
 - fix innerWidth bug.
 - make the canvas stick to content when scrolling.
+- add `options` file.
