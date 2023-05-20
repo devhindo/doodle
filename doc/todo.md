@@ -15,3 +15,8 @@ place it was drawn on.
 ## to be done
 
 - add badges to the readme file from [here](https://badgen.net/).
+
+## next to be done
+
+- fix innerWidth bug.
+- make the canvas stick to content when scrolling.
