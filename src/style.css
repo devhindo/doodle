@@ -5,6 +5,12 @@ h1 {
     margin: 0;
 }
 
+html,body {
+    background-color: rgb(25, 0, 49);
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto Mono', monospace;
+}
+
 .container {
     padding: 1.5rem;
     display: flex;
@@ -12,9 +18,6 @@ h1 {
     align-items: center;
     height: 250px;
     width:  250px;
-    background-color: rgb(25, 0, 49);
-    color: rgb(255, 255, 255);
-    font-family: 'Roboto Mono', monospace;
 }
 #title {
     text-align: center;
