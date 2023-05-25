@@ -22,7 +22,7 @@ document.addEventListener("keydown", (event: KeyboardEvent) => {
 
 document.addEventListener("keydown", (event: KeyboardEvent) => {
     if (isCanvasActive && ((event.ctrlKey && event.key === "]") || event.key == "Escape")) {
-        document.body.style.border = "none";
+        //document.body.style.border = "none";
         isCanvasActive = false;
         terminateCanvas();
     }
@@ -45,9 +45,9 @@ function initCanvas() {
     canvas.style.top = '0';
     canvas.style.left = '0';
     canvas.style.zIndex = '999999';
+    context = canvas.getContext('2d', {willReadFrequently: true});
     resizeCanvas();
     //canvas.style.border = '5px solid green';
-    context = canvas.getContext('2d', {willReadFrequently: true});
     
     context!.strokeStyle = color;
     context!.lineWidth = size;
@@ -58,6 +58,8 @@ function initCanvas() {
 
 
 function resizeCanvas() {
+    if(!isCanvasActive) return;
+    console.log("resize canvas fired");
     var canvasContent = context?.getImageData(0,0,canvas.width,canvas.height);
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;

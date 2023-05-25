@@ -21,3 +21,9 @@ place it was drawn on.
 - fix innerWidth bug.
 - make the canvas stick to content when scrolling.
 - add `options` file.
+- add eraser when right click holds.
+
+## Errors
+
+- Keyboard shortcuts only work on english keyboard.
+- Escape is not working.
