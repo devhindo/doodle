@@ -28,3 +28,4 @@ place it was drawn on.
 - Keyboard shortcuts only work on english keyboard.
 - Escape is not working.
 - allow scrolling && make it not fixed.
+- allow the user to choose the propper keyboard shortcut in options page.
